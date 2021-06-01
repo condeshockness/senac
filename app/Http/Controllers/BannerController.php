@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Banner;
-use Illuminate\Auth
+
 
 use Illuminate\Http\Request;
 

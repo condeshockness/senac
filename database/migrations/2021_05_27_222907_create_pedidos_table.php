@@ -16,10 +16,10 @@ class CreatePedidosTable extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->string('user')->nullable();
-            $table->unsignedBigInteger('clinete_id');
-            $table->foreign('cliente_id')->references('id')->on('clientes')->onUpdate('cascade');
+            $table->unsignedBigInteger('cliente_id');
+            $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->unsignedBigInteger('servico_id');
-            $table->foreign('servico_id')->references('id')->on('servicos')->onUpdate('cascade');
+            $table->foreign('servico_id')->references('id')->on('servicos');
             $table->decimal('valor')->nullable();
             $table->text('obs')->nullable();
             $table->timestamps();

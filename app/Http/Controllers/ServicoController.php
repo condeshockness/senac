@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Banner;
 
+use App\Models\Servico;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class BannerController extends Controller
+class ServicoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +17,9 @@ class BannerController extends Controller
      */
     public function index()
     {
-        //Listar dados
-        $banners = Banner::all();
-        return view('listar-banner', compact ('banners'));
-
-        
+        //
+        $servicos = Servico::all();
+        return view('listar-servico', compact ('servicos'));
     }
 
     /**
@@ -43,21 +41,21 @@ class BannerController extends Controller
     public function store(Request $request)
     {
         //
-
-        
-        $banner = new Banner;
+        $servico = new Servico;
 
         $user =Auth::user()->name;
         
 
-        $banner->user = $user;
-        $banner->nome = $request->input('nome');
-        $banner->imagem = $request->input('imagem');
+        $servico->user = $user;
+        $servico->nome_servico = $request->input('nome_servico');
+        $servico->descricao = $request->input('descricao');
+        $servico->imagem = $request->input('imagem');
 
-        $banner->save();
+        $servico->save();
+       
+        $request->session()->flash('message','Servico inserido com sucesso');
 
-        $request->session()->flash('message','Banner inserido com sucesso');
-        return Redirect::to('/listar-banner');
+        return Redirect::to('/listar-servico');
     }
 
     /**

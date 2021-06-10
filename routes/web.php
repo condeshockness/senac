@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ServicoController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,13 @@ Route::get('/dashboard', function () {
     $name = 'Ramon Silas';
     return view('dashboard',['name' => $name]);
 })->middleware(['auth'])->name('dashboard');
+
+####Route Cliente#######
+Route::get('/cadastrar-cliente',[ClienteController::class, 'create'])->middleware(['auth'])->name('cadastrar-cliente');
+Route::post('/cliente-store',[ClienteController::class, 'store'])->middleware(['auth'])->name('cliente-store');
+
+
+
 
 Route::get('/cadastrar-banner', function () {
     

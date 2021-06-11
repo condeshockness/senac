@@ -26,9 +26,17 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 ####Route Cliente#######
-Route::get('/cadastrar-cliente',[ClienteController::class, 'create'])->middleware(['auth'])->name('cadastrar-cliente');
+/* Route::get('/cadastrar-cliente',[ClienteController::class, 'create'])->middleware(['auth'])->name('cadastrar-cliente');
 Route::post('/cliente-store',[ClienteController::class, 'store'])->middleware(['auth'])->name('cliente-store');
+Route::get('/listar-cliente',[ClienteController::class, 'index'])->middleware(['auth'])->name('listar-cliente'); */
 
+Route::get('/cadastrar-cliente', function () {
+    
+    return view('cadastrar-cliente');
+})->middleware(['auth'])->name('cadastrar-cliente');
+
+Route::post('/store-cliente', [ClienteController::class, 'store'])->middleware(['auth'])->name('store-cliente');
+Route::get('/listar-cliente', [ClienteController::class, 'index'])->middleware(['auth'])->name('listar-cliente');
 
 
 
